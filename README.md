@@ -1,11 +1,11 @@
 # Oil Price Prediction with LSTM
 
+A deep learning project for forecasting crude oil closing prices using an LSTM (Long Short-Term Memory) network on historical data from 2000 to 2024.
+
 ## Example Prediction Result
 
 ![Oil Price Prediction](results/prediction_plot.png)
 
-
-A deep learning project for forecasting crude oil closing prices using an LSTM (Long Short-Term Memory) network on historical data from 2000 to 2024.
 
 ## Project Overview
 
