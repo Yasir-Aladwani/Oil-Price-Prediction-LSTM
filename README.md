@@ -1,138 +1,133 @@
-# Oil Price Prediction with LSTM
+# Oil Price Prediction Using LSTM & Simple RNN
 
-A deep learning project for forecasting crude oil closing prices using an LSTM (Long Short-Term Memory) network on historical data from 2000 to 2024.
+<p align="center">
+  <img src="images/lstm_performance.png" width="45%" alt="LSTM Model Performance"/>
+  <img src="images/rnn_performance.png" width="45%" alt="Simple RNN Model Performance"/>
+</p>
 
-## Example Prediction Result
+<p align="center">
+  <b>Deep Learning Time-Series Forecasting Project</b><br>
+  Developed during my internship at <b>Aramco</b>
+</p>
 
-![Oil Price Prediction](results/prediction_plot.png)
-
+---
 
 ## Project Overview
 
-This project explores how recurrent neural networks can be applied to financial time-series forecasting. It starts with exploratory data analysis (EDA) to understand oil price behavior over time, then builds an LSTM model to predict future closing prices based on previous observations.
+This project focuses on predicting oil prices using deep learning models for time-series forecasting.  
+The main goal is to compare the performance of **LSTM** and **Simple RNN** in forecasting future oil closing prices.
 
-## Problem Statement
-
-Forecasting oil prices is challenging because prices are affected by market volatility, geopolitical events, supply-demand shifts, and macroeconomic conditions. This project focuses on a simplified univariate forecasting setup where only the historical `Close` price is used to predict the next value.
+---
 
 ## Dataset
 
-The project expects a CSV file named `Crude_Oil_Data.csv` inside the `data/` folder.
+| Item | Description |
+|---|---|
+| Source | Kaggle |
+| Type | Open-source historical oil price dataset |
+| Target Column | Close Price |
+| Task | Time-Series Forecasting |
 
-Required columns:
-- `Date`
-- `Close`
-- `High`
-- `Low`
+---
 
-Example path:
-```bash
-data/Crude_Oil_Data.csv
-```
+## Models Used
 
-## Project Structure
+| Model | Description | Strength |
+|---|---|---|
+| LSTM | Learns long-term patterns using memory gates | Better for long sequences |
+| Simple RNN | Processes sequential data step by step | Simple baseline model |
 
-```text
-oil-price-lstm-github-project/
-├── data/
-│   └── README.md
-├── notebooks/
-│   └── oil_price_prediction_lstm.ipynb
-├── results/
-│   └── README.md
-├── src/
-│   └── train_lstm.py
-├── .gitignore
-├── README.md
-└── requirements.txt
-```
+---
 
-## Workflow
+## Methodology
 
-1. Load and inspect the dataset
-2. Convert `Date` to datetime format
-3. Perform EDA:
-   - Price trend over time
-   - Monthly average prices
-   - Yearly average prices
-   - Moving averages
-   - High-Low price spread
-4. Scale the `Close` price using MinMaxScaler
-5. Create rolling sequences for LSTM input
-6. Train an LSTM model
-7. Evaluate with:
-   - MSE
-   - RMSE
-   - R²
-8. Plot actual vs predicted prices
+| Step | Description |
+|---|---|
+| 1 | Loaded the historical oil price dataset |
+| 2 | Converted the Date column to datetime format |
+| 3 | Sorted the data in ascending chronological order |
+| 4 | Selected the Close column for forecasting |
+| 5 | Scaled values using MinMaxScaler |
+| 6 | Created time-series sequences |
+| 7 | Split data into training, validation, and testing sets |
+| 8 | Trained LSTM and Simple RNN models |
+| 9 | Evaluated models using regression metrics |
+| 10 | Visualized Actual vs Predicted results |
 
-## Model
+---
 
-The forecasting model uses:
-- LSTM layer (50 units, return sequences = True)
-- Dropout (0.2)
-- LSTM layer (50 units)
-- Dropout (0.2)
-- Dense output layer (1 unit)
+## Training Setup
 
-Loss function:
-- Mean Squared Error
+| Parameter | Value |
+|---|---|
+| Optimizer | Adam |
+| Loss Function | Mean Squared Error |
+| Batch Size | 32 |
+| Epochs | Up to 50 |
+| Regularization | Early Stopping |
 
-Optimizer:
-- Adam
+---
 
-## How to Run
+## Evaluation Metrics
 
-### 1) Install dependencies
+| Metric | Purpose |
+|---|---|
+| MAE | Measures average absolute prediction error |
+| RMSE | Penalizes large prediction errors |
+| R² Score | Measures how well the model explains price variation |
+| Loss Curves | Tracks training and validation behavior |
+| Actual vs Predicted | Visual comparison of forecasting performance |
 
-```bash
-pip install -r requirements.txt
-```
+---
 
-### 2) Add the dataset
+## Key Finding
 
-Place your dataset in:
+| Model | Performance |
+|---|---|
+| LSTM | Achieved better forecasting performance |
+| Simple RNN | Useful baseline but weaker with long-term dependencies |
 
-```bash
-data/Crude_Oil_Data.csv
-```
+The **LSTM model** performed better because it can retain important information over longer time periods using its gated memory structure.
 
-### 3) Run the training script
+---
 
-```bash
-python src/train_lstm.py
-```
+## RNN Challenges
 
-Or open the notebook:
+| Challenge | Explanation |
+|---|---|
+| Vanishing Gradient | The gradient becomes too small, so the model forgets earlier information |
+| Exploding Gradient | The gradient becomes too large, making training unstable |
 
-```bash
-notebooks/oil_price_prediction_lstm.ipynb
-```
+LSTM helps reduce these issues using gates that control what information should be remembered, updated, or forgotten.
 
-## Notes
+---
 
-- This is a **univariate** forecasting approach using only the closing price.
-- Results can be improved by adding external features such as:
-  - news sentiment
-  - macroeconomic indicators
-  - political events
-  - supply/demand variables
+## Technologies Used
 
-## Future Improvements
+| Category | Tools |
+|---|---|
+| Programming | Python |
+| Data Handling | Pandas, NumPy |
+| Visualization | Matplotlib |
+| Preprocessing | Scikit-learn |
+| Deep Learning | TensorFlow, Keras |
+| Environment | Jupyter Notebook, Google Colab |
 
-- Add multivariate features
-- Perform hyperparameter tuning
-- Use walk-forward validation
-- Compare LSTM with GRU, XGBoost, and Prophet
-- Save trained models and prediction plots automatically
+---
 
-## Why this project is useful for GitHub
+## Repository Contents
 
-This repository demonstrates:
-- time-series preprocessing
-- exploratory data analysis
-- deep learning with LSTM
-- regression evaluation
-- project organization and reproducibility
+| File | Description |
+|---|---|
+| `Oil_Price_Prediction_LSTM_RNN_Comparison.ipynb` | Main notebook |
+| `Final Report` | Project report |
+| `README.md` | Project documentation |
+| `images/` | Model performance visuals |
 
-It is a strong portfolio project for data science, machine learning, and AI roles.
+---
+
+## Author
+
+**Yasir Abdullah Aladwani**  
+B.Sc. in Artificial Intelligence  
+AI/ML Engineer | Data Analysis, Machine Learning, and Deep Learning
